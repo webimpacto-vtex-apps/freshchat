@@ -7,7 +7,7 @@ or
 Run the following command:
 
 ```sh
-vtex install vtex.webimpacto@0.x
+vtex install webimpacto.freshchat@0.x
 ```
 
 Next, open the app settings on your admin and fill the form with your FreshChat Details.
