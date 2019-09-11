@@ -1,0 +1,55 @@
+{
+  "name": "freshchat",
+  "vendor": "webimpacto",
+  "version": "0.0.1",
+  "title": "FreshChat",
+  "description": "FreshChat",
+  "billingOptions": {
+    "termsURL": "",
+    "free": true
+  },
+  "builders": {
+    "pixel": "0.x",
+    "docs": "0.x"
+  },
+  "dependencies": {
+    "vtex.pixel-interfaces": "1.x"
+  },
+  "settingsSchema": {
+    "title": "FreshChat",
+    "type": "object",
+    "properties": {
+      "token": {
+        "title": "Token",
+        "description": "Enter the token from your FreshChat panel",
+        "type": "string"
+      },
+      "host": {
+        "title": "Host",
+        "description": "Enter Host",
+        "default": "https://wchat.freshchat.com",
+        "type": "string"
+      },
+      "locale": {
+        "title": "Locale",
+        "description": "Default language",
+        "default": "en",
+        "type": "string",
+        "enum": ["en","pt","es","fr","it"]  
+      },
+      "showOn": {
+        "title": "Show on:",
+        "description": "Only Desktop, Only Mobile or Both",
+        "type": "string",
+        "enum": ["Both", "Desktop","Mobile"],
+        "default": "Both"
+      },
+      "config": {
+        "title": "Config (Advanced)",
+        "description": "Extra config parameter in JSON Foramt",
+        "type": "string"
+      }
+    }
+  },
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
+}

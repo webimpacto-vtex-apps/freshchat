@@ -1,0 +1,53 @@
+<script>
+  (function () {
+    var appToken = "{{settings.token}}";
+    var appHost = decodeURIComponent("{{settings.host}}");
+    var appLocale = "{{settings.locale}}";
+    var appConfig = decodeURIComponent("{{settings.config}}");
+    var showOn = "{{settings.showOn}}";
+
+    if (!appToken) {
+      console.error('Warning: FreshChat Token is not defined. Please configure it in the apps admin.');
+      return
+    }
+
+    var freshChatOptions = {
+      token: appToken,
+      host: appHost,
+      locale: appLocale
+    };
+
+    if (appConfig) {
+      try {
+        freshChatOptions.config = JSON.parse(appConfig);
+      } catch (e) {
+        console.error(`Invalid Config JSON Data Format.
+Example: {"headerProperty": {"direction": "ltr"}}`);
+      }
+    }
+
+    function initFreshChat() {
+      window.fcWidget.init(freshChatOptions);
+    }
+
+    function initialize(i, t) { var e; i.getElementById(t) ? initFreshChat() : ((e = i.createElement("script")).id = t, e.async = !0, e.src = "https://wchat.freshchat.com/js/widget.js", e.onload = initFreshChat, i.head.appendChild(e)) }
+    function initiateCall() { initialize(document, "freshchat-js-sdk") }
+
+
+    var deviceType = /iPad/.test(navigator.userAgent)
+      ? 't'
+      : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile/.test(navigator.userAgent)
+        ? 'm'
+        : 'd';
+
+    if (
+      (showOn == 'Both') ||
+      (showOn == 'Desktop' && deviceType == 'd' || deviceType == 't') ||
+      (showOn == 'Mobile' && deviceType == 'm')
+    ) {
+      window.addEventListener ? window.addEventListener("load", initiateCall, !1) : window.attachEvent("load", initiateCall, !1);
+    }
+
+
+  })()
+</script>
